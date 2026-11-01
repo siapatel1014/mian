@@ -1,8 +1,6 @@
 # CliniGuard AI — Clinical Trial Risk Monitor
 
-**Track:** AI  
-**Problem Statement:** P1 — Clinical Trial Risk Monitor & Protocol Deviation Detector  
-**Team:** [YOUR TEAM NAME]
+
 
 ## Problem
 Clinical trials involve thousands of patient visits across many sites. Protocol deviations such as missed visits, incorrect dosing, and prohibited co-medications can remain hidden until an audit. This creates regulatory, cost, and patient-safety risk.
