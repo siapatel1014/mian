@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CliniGuard AI | Clinical Trial Risk Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-left">
+        <div class="brand large-brand">
+            <div class="brand-icon">🧬</div>
+            <div>
+                <h1>CliniGuard <span>AI</span></h1>
+                <p>Clinical Trial Intelligence</p>
+            </div>
+        </div>
+
+        <div class="login-content">
+            <div class="eyebrow">AI-POWERED MONITORING</div>
+
+            <h2>
+                Detect risks before<br>
+                they become <span>critical.</span>
+            </h2>
+
+            <p>
+                Monitor clinical trial protocol deviations, identify
+                high-risk sites and generate actionable CAPA recommendations.
+            </p>
+
+            <div class="feature-row">
+                <div class="feature">
+                    <strong>98.4%</strong>
+                    <span>Detection accuracy</span>
+                </div>
+
+                <div class="feature">
+                    <strong>24/7</strong>
+                    <span>Risk monitoring</span>
+                </div>
+
+                <div class="feature">
+                    <strong>5x</strong>
+                    <span>Faster review</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-right">
+
+        <div class="login-card">
+
+            <div class="mobile-logo">🧬</div>
+
+            <h2>Welcome back</h2>
+            <p class="muted">Sign in to your monitoring dashboard</p>
+
+            <form id="loginForm">
+
+                <label>Email address</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="monitor@clinic.com"
+                    required
+                >
+
+                <label>Password</label>
+
+                <div class="password-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required
+                    >
+                    <button type="button" onclick="togglePassword()">👁</button>
+                </div>
+
+                <div class="login-options">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button class="primary-btn login-btn">
+                    Sign in to Dashboard →
+                </button>
+
+            </form>
+
+            <div class="demo-login">
+                <span>Demo account</span>
+                <button onclick="demoLogin()">Use Demo Login</button>
+            </div>
+
+            <p class="security-note">
+                🔒 Secure clinical monitoring environment
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🧬</div>
+            <div>
+                <h1>CliniGuard <span>AI</span></h1>
+                <p>Trial Intelligence</p>
+            </div>
+        </div>
+
+        <nav>
+
+            <p class="nav-title">MAIN</p>
+
+            <button class="nav-item active" onclick="showPage('dashboard', this)">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showPage('deviations', this)">
+                <span>⚠</span> Protocol Deviations
+                <b class="nav-badge">12</b>
+            </button>
+
+            <button class="nav-item" onclick="showPage('sites', this)">
+                <span>⌖</span> Site Risk
+            </button>
+
+            <button class="nav-item" onclick="showPage('reports', this)">
+                <span>▤</span> Reports
+            </button>
+
+            <p class="nav-title">PROJECT</p>
+
+            <button class="nav-item" onclick="showPage('protocol', this)">
+                <span>◈</span> Protocol
+            </button>
+
+            <button class="nav-item" onclick="showPage('about', this)">
+                <span>ⓘ</span> About Project
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="trial-card">
+                <small>ACTIVE TRIAL</small>
+                <strong>TRIAL-2026-AI</strong>
+                <div class="trial-progress">
+                    <div></div>
+                </div>
+                <span>68% monitoring complete</span>
+            </div>
+
+            <button class="user-box" onclick="logout()">
+                <div class="avatar">DR</div>
+                <div>
+                    <strong>Dr. Rahul Mehta</strong>
+                    <small>Clinical Monitor</small>
+                </div>
+                <span>↪</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+            <div>
+                <span class="page-location">Clinical Operations /</span>
+                <strong id="topTitle">Dashboard</strong>
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn" onclick="showNotifications()">
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="top-user">
+                    <div class="avatar">DR</div>
+                    <div>
+                        <strong>Dr. Rahul Mehta</strong>
+                        <small>Clinical Monitor</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="page-header">
+
+                <div>
+                    <div class="eyebrow">TRIAL OVERVIEW</div>
+                    <h2>Good morning, Dr. Mehta 👋</h2>
+                    <p>
+                        Here's what's happening across your clinical trial today.
+                    </p>
+                </div>
+
+                <div class="date-box">
+                    📅 September 14, 2026
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">◉</div>
+                    <div>
+                        <span>Records Reviewed</span>
+                        <strong>5,842</strong>
+                        <small class="positive">↑ 12.8% this month</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">⚠</div>
+                    <div>
+                        <span>Protocol Deviations</span>
+                        <strong>127</strong>
+                        <small class="negative">↑ 8.2% this month</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">!</div>
+                    <div>
+                        <span>Major Deviations</span>
+                        <strong>34</strong>
+                        <small class="negative">↑ 4.1% this month</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">⌖</div>
+                    <div>
+                        <span>High-Risk Sites</span>
+                        <strong>4</strong>
+                        <small class="positive">↓ 2 sites resolved</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CHARTS -->
+
+            <div class="dashboard-grid">
+
+                <div class="panel large-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Deviation Trends</h3>
+                            <p>Protocol deviations over the last 30 days</p>
+                        </div>
+
+                        <select id="trendFilter" onchange="updateChart()">
+                            <option>Last 30 days</option>
+                            <option>Last 7 days</option>
+                            <option>Last 90 days</option>
+                        </select>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="panel risk-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Risk Distribution</h3>
+                            <p>Current site classification</p>
+                        </div>
+                    </div>
+
+                    <div class="donut-container">
+                        <canvas id="riskChart"></canvas>
+
+                        <div class="donut-center">
+                            <strong>12</strong>
+                            <span>Sites</span>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+
+                        <div>
+                            <span class="legend-dot high"></span>
+                            High Risk
+                            <strong>4</strong>
+                        </div>
+
+                        <div>
+                            <span class="legend-dot medium"></span>
+                            Medium Risk
+                            <strong>5</strong>
+                        </div>
+
+                        <div>
+                            <span class="legend-dot low"></span>
+                            Low Risk
+                            <strong>3</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT DEVIATIONS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Recent Protocol Deviations</h3>
+                        <p>Latest automatically detected issues</p>
+                    </div>
+
+                    <button class="text-btn" onclick="showPage('deviations')">
+                        View all →
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Deviation ID</th>
+                                <th>Site</th>
+                                <th>Subject</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DEVIATIONS ================= -->
+
+        <section id="deviations" class="page">
+
+            <div class="page-header">
+
+                <div>
+                    <div class="eyebrow">AI DETECTION ENGINE</div>
+                    <h2>Protocol Deviations</h2>
+                    <p>
+                        Review deviations automatically detected against the trial protocol.
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="runScan()">
+                    ✦ Run AI Scan
+                </button>
+
+            </div>
+
+
+            <div class="filter-bar">
+
+                <input
+                    type="text"
+                    id="searchDeviation"
+                    placeholder="🔍 Search deviation, site or subject..."
+                    onkeyup="filterDeviations()"
+                >
+
+                <select id="severityFilter" onchange="filterDeviations()">
+                    <option value="all">All Severity</option>
+                    <option value="Major">Major</option>
+                    <option value="Minor">Minor</option>
+                    <option value="Administrative">Administrative</option>
+                </select>
+
+                <select>
+                    <option>All Sites</option>
+                    <option>SITE-001</option>
+                    <option>SITE-002</option>
+                    <option>SITE-003</option>
+                </select>
+
+                <button class="secondary-btn" onclick="exportData()">
+                    ↓ Export
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Detected Deviations</h3>
+                        <p id="deviationCount">Showing 12 deviations</p>
+                    </div>
+
+                    <span class="ai-status">
+                        ● AI Engine Active
+                    </span>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Site</th>
+                                <th>Subject</th>
+                                <th>Deviation</th>
+                                <th>Detected</th>
+                                <th>Severity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="deviationTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SITE RISK ================= -->
+
+        <section id="sites" class="page">
+
+            <div class="page-header">
+
+                <div>
+                    <div class="eyebrow">RISK INTELLIGENCE</div>
+                    <h2>Site Risk Analysis</h2>
+                    <p>
+                        Monitor leading indicators and identify sites requiring attention.
+                    </p>
+                </div>
+
+                <button class="secondary-btn" onclick="refreshRisk()">
+                    ↻ Refresh Analysis
+                </button>
+
+            </div>
+
+
+            <div class="risk-summary">
+
+                <div class="risk-score-card">
+
+                    <div class="risk-score-circle">
+                        <strong>68</strong>
+                        <span>/100</span>
+                    </div>
+
+                    <div>
+                        <span>Overall Trial Risk</span>
+                        <h3>Medium Risk</h3>
+                        <p>↓ 6 points from last week</p>
+                    </div>
+
+                </div>
+
+                <div class="risk-insight">
+                    <span>✦ AI INSIGHT</span>
+                    <p>
+                        <strong>SITE-004</strong> requires immediate attention.
+                        Its deviation rate is 42% higher than the trial average,
+                        primarily driven by missed visits and dose variance.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Site Risk Ranking</h3>
+                        <p>Risk score calculated from deviation frequency, severity and trends</p>
+                    </div>
+                </div>
+
+                <div class="site-list">
+
+                    <div class="site-row">
+                        <div class="rank">01</div>
+                        <div class="site-info">
+                            <strong>SITE-004</strong>
+                            <span>Ahmedabad, India</span>
+                        </div>
+                        <div class="site-metric">
+                            <span>Deviation Rate</span>
+                            <strong>38.4%</strong>
+                        </div>
+                        <div class="progress">
+                            <div style="width:88%"></div>
+                        </div>
+                        <div class="score high-score">88</div>
+                        <span class="badge major">HIGH</span>
+                        <button onclick="showSiteDetails('SITE-004')">→</button>
+                    </div>
+
+                    <div class="site-row">
+                        <div class="rank">02</div>
+                        <div class="site-info">
+                            <strong>SITE-009</strong>
+                            <span>Mumbai, India</span>
+                        </div>
+                        <div class="site-metric">
+                            <span>Deviation Rate</span>
+                            <strong>31.2%</strong>
+                        </div>
+                        <div class="progress">
+                            <div style="width:74%"></div>
+                        </div>
+                        <div class="score high-score">74</div>
+                        <span class="badge major">HIGH</span>
+                        <button onclick="showSiteDetails('SITE-009')">→</button>
+                    </div>
+
+                    <div class="site-row">
+                        <div class="rank">03</div>
+                        <div class="site-info">
+                            <strong>SITE-002</strong>
+                            <span>Vadodara, India</span>
+                        </div>
+                        <div class="site-metric">
+                            <span>Deviation Rate</span>
+                            <strong>24.6%</strong>
+                        </div>
+                        <div class="progress">
+                            <div style="width:58%"></div>
+                        </div>
+                        <div class="score medium-score">58</div>
+                        <span class="badge warning">MEDIUM</span>
+                        <button onclick="showSiteDetails('SITE-002')">→</button>
+                    </div>
+
+                    <div class="site-row">
+                        <div class="rank">04</div>
+                        <div class="site-info">
+                            <strong>SITE-007</strong>
+                            <span>Surat, India</span>
+                        </div>
+                        <div class="site-metric">
+                            <span>Deviation Rate</span>
+                            <strong>18.1%</strong>
+                        </div>
+                        <div class="progress">
+                            <div style="width:39%"></div>
+                        </div>
+                        <div class="score medium-score">39</div>
+                        <span class="badge warning">MEDIUM</span>
+                        <button onclick="showSiteDetails('SITE-007')">→</button>
+                    </div>
+
+                    <div class="site-row">
+                        <div class="rank">05</div>
+                        <div class="site-info">
+                            <strong>SITE-001</strong>
+                            <span>Anand, India</span>
+                        </div>
+                        <div class="site-metric">
+                            <span>Deviation Rate</span>
+                            <strong>8.7%</strong>
+                        </div>
+                        <div class="progress">
+                            <div style="width:17%"></div>
+                        </div>
+                        <div class="score low-score">17</div>
+                        <span class="badge success">LOW</span>
+                        <button onclick="showSiteDetails('SITE-001')">→</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+
+        <section id="reports" class="page">
+
+            <div class="page-header">
+
+                <div>
+                    <div class="eyebrow">ACTION CENTER</div>
+                    <h2>CAPA Reports</h2>
+                    <p>Generate corrective and preventive action recommendations.</p>
+                </div>
+
+                <button class="primary-btn" onclick="generateReport()">
+                    + Generate Report
+                </button>
+
+            </div>
+
+
+            <div class="report-grid">
+
+                <div class="report-card">
+
+                    <div class="report-icon red">⚠</div>
+
+                    <div>
+                        <span>HIGH PRIORITY</span>
+                        <h3>SITE-004 CAPA Report</h3>
+                        <p>4 major deviations require corrective action.</p>
+                    </div>
+
+                    <button onclick="generateReport()">Generate →</button>
+
+                </div>
+
+                <div class="report-card">
+
+                    <div class="report-icon orange">!</div>
+
+                    <div>
+                        <span>REVIEW REQUIRED</span>
+                        <h3>SITE-009 Monitoring Report</h3>
+                        <p>Elevated protocol deviation trend detected.</p>
+                    </div>
+
+                    <button onclick="generateReport()">Generate →</button>
+
+                </div>
+
+                <div class="report-card">
+
+                    <div class="report-icon green">✓</div>
+
+                    <div>
+                        <span>COMPLETED</span>
+                        <h3>SITE-001 Review</h3>
+                        <p>Routine monitoring completed successfully.</p>
+                    </div>
+
+                    <button onclick="generateReport()">View →</button>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel report-preview">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>CAPA Report Preview</h3>
+                        <p>AI-generated recommendations based on detected deviations</p>
+                    </div>
+
+                    <button class="secondary-btn" onclick="downloadReport()">
+                        ↓ Download
+                    </button>
+                </div>
+
+                <div id="reportContent">
+
+                    <div class="report-title">
+                        <div>
+                            <span>CLINIGUARD AI</span>
+                            <h2>Corrective & Preventive Action Report</h2>
+                        </div>
+
+                        <strong>CAPA-2026-004</strong>
+                    </div>
+
+                    <div class="report-meta">
+                        <div>
+                            <span>Site</span>
+                            <strong>SITE-004</strong>
+                        </div>
+
+                        <div>
+                            <span>Risk Level</span>
+                            <strong class="text-red">HIGH</strong>
+                        </div>
+
+                        <div>
+                            <span>Risk Score</span>
+                            <strong>88 / 100</strong>
+                        </div>
+
+                        <div>
+                            <span>Date</span>
+                            <strong>14 Sep 2026</strong>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h4>AI Risk Assessment</h4>
+
+                    <p>
+                        SITE-004 shows a significantly elevated deviation rate.
+                        The primary contributors are missed protocol visits,
+                        dose variance and repeated documentation issues.
+                    </p>
+
+                    <h4>Recommended Corrective Actions</h4>
+
+                    <ul>
+                        <li>Perform targeted source-data review for all major deviations.</li>
+                        <li>Conduct immediate protocol retraining for site staff.</li>
+                        <li>Review medication administration procedures.</li>
+                        <li>Increase monitoring frequency for the next 30 days.</li>
+                    </ul>
+
+                    <div class="recommendation">
+                        <strong>✦ AI Recommendation</strong>
+                        <p>
+                            Schedule an immediate targeted monitoring visit
+                            within 7 days and reassess the site's risk score
+                            after corrective actions are documented.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROTOCOL ================= -->
+
+        <section id="protocol" class="page">
+
+            <div class="page-header">
+
+                <div>
+                    <div class="eyebrow">TRIAL CONFIGURATION</div>
+                    <h2>Protocol Rules</h2>
+                    <p>Rules used by the CliniGuard detection engine.</p>
+                </div>
+
+                <button class="primary-btn" onclick="saveProtocol()">
+                    Save Changes
+                </button>
+
+            </div>
+
+
+            <div class="protocol-grid">
+
+                <div class="panel">
+
+                    <h3>Visit Schedule</h3>
+
+                    <div class="rule">
+                        <div class="rule-icon">📅</div>
+                        <div>
+                            <strong>Visit Window</strong>
+                            <p>Visits must occur within ±3 days of scheduled date.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-icon">⏱</div>
+                        <div>
+                            <strong>Missed Visit</strong>
+                            <p>Flag any visit with no recorded attendance.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span></span>
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <h3>Medication Rules</h3>
+
+                    <div class="rule">
+                        <div class="rule-icon">💊</div>
+                        <div>
+                            <strong>Dose Variance</strong>
+                            <p>Flag dosage differences from protocol target.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-icon">🚫</div>
+                        <div>
+                            <strong>Prohibited Medication</strong>
+                            <p>Flag predefined banned co-medications.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span></span>
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="page">
+
+            <div class="hero-about">
+
+                <div class="about-logo">🧬</div>
+
+                <div>
+                    <div class="eyebrow">IBM BOB AI INNOVATION HACKATHON</div>
+                    <h2>CliniGuard AI</h2>
+
+                    <p>
+                        An AI-powered clinical trial risk monitoring
+                        concept designed to detect protocol deviations
+                        early and help clinical teams take corrective action.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="panel">
+
+                    <h3>Problem</h3>
+
+                    <p>
+                        Clinical trials involve large numbers of patient
+                        visits across multiple sites. Missed visits,
+                        incorrect dosing and prohibited medications can
+                        remain hidden until late-stage review or audit.
+                    </p>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>Our Solution</h3>
+
+                    <p>
+                        CliniGuard compares trial records with protocol
+                        rules, detects deviations, classifies their
+                        severity and converts these signals into
+                        site-level risk insights.
+                    </p>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>Technology</h3>
+
+                    <div class="tech-tags">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Chart.js</span>
+                        <span>IBM Bob</span>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>Future Scope</h3>
+
+                    <ul>
+                        <li>Real clinical data integration</li>
+                        <li>Advanced ML risk prediction</li>
+                        <li>Automated NLP protocol analysis</li>
+                        <li>Secure cloud deployment</li>
+                        <li>Role-based access control</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- SITE DETAIL MODAL -->
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal()">×</button>
+
+        <div class="eyebrow">SITE RISK ANALYSIS</div>
+
+        <h2 id="modalSite">SITE-004</h2>
+
+        <div class="modal-score">
+            <strong>88</strong>
+            <span>/100 HIGH RISK</span>
+        </div>
+
+        <div class="modal-stats">
+
+            <div>
+                <span>Records</span>
+                <strong>482</strong>
+            </div>
+
+            <div>
+                <span>Deviations</span>
+                <strong>185</strong>
+            </div>
+
+            <div>
+                <span>Major</span>
+                <strong>24</strong>
+            </div>
+
+        </div>
+
+        <h3>AI Recommendation</h3>
+
+        <p>
+            Schedule targeted monitoring within 7 days.
+            Retrain site staff on protocol adherence and
+            review all recent dose administration records.
+        </p>
+
+        <button class="primary-btn" onclick="closeModal(); showPage('reports')">
+            Generate CAPA Report
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+    <span>✓</span>
+    <p>Action completed successfully.</p>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
