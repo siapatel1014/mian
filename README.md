@@ -53,5 +53,3 @@ The included data is synthetic and contains no real patient information.
 - Risk scores are decision-support indicators, not regulatory determinations.
 - Real deployments would require validated data pipelines, audit trails, access control, privacy/security controls and clinical/regulatory validation.
 
-## What We're Most Proud Of
-The strongest part of this MVP is the end-to-end path from protocol rules → deviation detection → site-level risk → actionable CAPA recommendations, with explainable reasons for every flagged record.
